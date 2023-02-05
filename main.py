@@ -88,39 +88,69 @@ for i, name in zip(userData['Profile_Url'], userData['Name']):
     
         if text == "\n    Pending\n":
             continue
-        else:
+
+        if text == "\n    Save in Sales Navigator\n":
             sleep(2)
-            browser.find_element(By.XPATH, "/html/body/div[5]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/div[3]/button").click()
+            browser.find_element(By.XPATH, "/html/body/div[5]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/div[2]/button").click()
+            browser.find_element(By.XPATH, "/html/body/div[5]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/div[2]/div/div/ul/li[5]/div").click()
             sleep(1)
-            try:
-                browser.find_element(By.XPATH,"/html/body/div[5]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/div[3]/div/div/ul/li[3]/div").click()
-            except:
-                browser.find_element(By.XPATH,"/html/body/div[5]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/div[2]/button").click()
-
+            browser.find_element(By.XPATH,"/html/body/div[3]/div/div/div[2]/div/button[1]").click()
             sleep(1)
-            try:
-                browser.find_element(By.XPATH,"/html/body/div[3]/div/div/div[3]/button[1]").click()
+            browser.find_element(By.XPATH,"/html/body/div[3]/div/div/div[3]/button").click()
+            browser.find_element(By.XPATH,"/html/body/div[3]/div/div/div[3]/button[1]").click()
+            sleep(1)    
+            textfield = browser.find_element(By.XPATH, "/html/body/div[3]/div/div/div[2]/div[1]/textarea")
+            textfield.send_keys(Message(name))
+            sleep(1)
+            sendMessage = browser.find_element(By.XPATH, "/html/body/div[3]/div/div/div[3]/button[2]")
+            ActionChains(browser).move_to_element(sendMessage).click(sendMessage).perform()  
 
-                sleep(1)    
-                textfield = browser.find_element(By.XPATH, "/html/body/div[3]/div/div/div[2]/div[1]/textarea")
-                textfield.send_keys(Message(name))
-                if enableMessageSent:
-                    sleep(1)
-                    sendMessage = browser.find_element(By.XPATH, "/html/body/div[3]/div/div/div[3]/button[2]")
-                    ActionChains(browser).move_to_element(sendMessage).click(sendMessage).perform()        
-            except:
-                browser.find_element(By.XPATH,"/html/body/div[3]/div/div/div[2]/div/button[1]").click()
+        else:
+            try:
+                sleep(2)
+                browser.find_element(By.XPATH, "/html/body/div[5]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/div[3]/button").click()
                 sleep(1)
-                browser.find_element(By.XPATH,"/html/body/div[3]/div/div/div[3]/button").click()
-                browser.find_element(By.XPATH,"/html/body/div[3]/div/div/div[3]/button[1]").click()
+                try:
+                    browser.find_element(By.XPATH,"/html/body/div[5]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/div[3]/div/div/ul/li[3]/div").click()
+                except:
+                    browser.find_element(By.XPATH,"/html/body/div[5]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/div[2]/button").click()
 
+                sleep(1)
+                try:
+                    browser.find_element(By.XPATH,"/html/body/div[3]/div/div/div[3]/button[1]").click()
+
+                    sleep(1)    
+                    textfield = browser.find_element(By.XPATH, "/html/body/div[3]/div/div/div[2]/div[1]/textarea")
+                    textfield.send_keys(Message(name))
+                    if enableMessageSent:
+                        sleep(1)
+                        sendMessage = browser.find_element(By.XPATH, "/html/body/div[3]/div/div/div[3]/button[2]")
+                        ActionChains(browser).move_to_element(sendMessage).click(sendMessage).perform()        
+                except:
+                    browser.find_element(By.XPATH,"/html/body/div[3]/div/div/div[2]/div/button[1]").click()
+                    sleep(1)
+                    browser.find_element(By.XPATH,"/html/body/div[3]/div/div/div[3]/button").click()
+                    browser.find_element(By.XPATH,"/html/body/div[3]/div/div/div[3]/button[1]").click()
+
+                    sleep(1)    
+                    textfield = browser.find_element(By.XPATH, "/html/body/div[3]/div/div/div[2]/div[1]/textarea")
+                    textfield.send_keys(Message(name))
+                    if enableMessageSent:
+                        sleep(1)
+                        sendMessage = browser.find_element(By.XPATH, "/html/body/div[3]/div/div/div[3]/button[2]")
+                        ActionChains(browser).move_to_element(sendMessage).click(sendMessage).perform() 
+            except:
+                sleep(2)
+                browser.find_element(By.XPATH, "/html/body/div[5]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/div[2]/button").click()
+                browser.find_element(By.XPATH, "/html/body/div[5]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/div[2]/div/div/ul/li[5]/div").click()
+                sleep(1)
+                browser.find_element(By.XPATH,"/html/body/div[3]/div/div/div[3]/button[1]").click()
                 sleep(1)    
                 textfield = browser.find_element(By.XPATH, "/html/body/div[3]/div/div/div[2]/div[1]/textarea")
                 textfield.send_keys(Message(name))
-                if enableMessageSent:
-                    sleep(1)
-                    sendMessage = browser.find_element(By.XPATH, "/html/body/div[3]/div/div/div[3]/button[2]")
-                    ActionChains(browser).move_to_element(sendMessage).click(sendMessage).perform() 
+                sleep(1)
+                sendMessage = browser.find_element(By.XPATH, "/html/body/div[3]/div/div/div[3]/button[2]")
+                ActionChains(browser).move_to_element(sendMessage).click(sendMessage).perform()                              
     except:
         pass
 
